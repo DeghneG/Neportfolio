@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import Reveal from '../components/Reveal'
-import Vine from '../components/Vine'
 import SectionHead from '../components/SectionHead'
 import WorkSection from '../components/WorkSection'
 import { credentials, languageGroups, profile } from '../data/content'
@@ -36,8 +35,6 @@ function Hero() {
       >
         <img src="/profile.jpg" alt="" className="h-full w-full object-cover object-[50%_28%] grayscale contrast-125 brightness-90" />
       </motion.div>
-      <Vine className="absolute left-2 top-0 hidden h-[88%] w-28 xl:block" seed={1} />
-      <Vine className="absolute left-16 top-0 hidden h-[46%] w-20 opacity-60 xl:block" seed={4} />
       <div className="relative z-10 mx-auto w-full max-w-7xl">
         <motion.p
           initial={{ opacity: 0, y: 12 }}
@@ -110,22 +107,17 @@ function About() {
           </div>
           <p className="text-2xl leading-snug text-bone md:text-4xl md:leading-tight">{profile.bio}</p>
         </Reveal>
-        <div className="space-y-12 md:col-span-5">
-          {languageGroups.map((g) => (
+        <div className="grid grid-cols-2 gap-10 md:col-span-5">
+          {languageGroups.map((g, gi) => (
             <div key={g.title}>
-              <Reveal delay={150}>
-                <div className="mb-6 flex items-center justify-between">
-                  <p className="label !text-bone">{g.title}</p>
-                  <p className="label">{String(g.items.length).padStart(2, '0')}</p>
-                </div>
+              <Reveal delay={gi * 150}>
+                <h3 className="display mb-6 text-2xl">{g.title}</h3>
               </Reveal>
-              <ul className="divide-y divide-line border-y border-line">
+              <ul className="space-y-3">
                 {g.items.map((l, i) => (
-                  <Reveal as="li" key={l} delay={i * 90} className="group flex items-center justify-between py-4">
-                    <span className="text-xl font-semibold tracking-tight transition-transform duration-500 group-hover:translate-x-2">
-                      {l}
-                    </span>
-                    <span className="label">{String(i + 1).padStart(2, '0')}</span>
+                  <Reveal as="li" key={l} delay={gi * 150 + (i + 1) * 90} className="flex items-center gap-3 text-xl">
+                    <span aria-hidden className="size-1.5 shrink-0 bg-bone" />
+                    <span className="font-medium tracking-tight text-smoke">{l}</span>
                   </Reveal>
                 ))}
               </ul>

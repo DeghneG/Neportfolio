@@ -14,7 +14,13 @@
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-html { scroll-behavior: smooth; background: var(--color-ink); }
+html {
+  scroll-behavior: smooth;
+  background: var(--color-ink);
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+}
+html::-webkit-scrollbar { display: none; } /* Chrome, Edge, Safari */
 body {
   margin: 0;
   background: var(--color-ink);
@@ -70,14 +76,7 @@ body::before {
 .rule-grow { transform: scaleX(0); transform-origin: left; transition: transform 1.6s var(--ease-out-expo); transition-delay: var(--reveal-delay, 0ms); }
 .is-visible.rule-grow, .is-visible .rule-grow { transform: scaleX(1); }
 
-@keyframes vine-sway {
-  from { transform: rotate(-1.6deg); }
-  to { transform: rotate(1.6deg); }
-}
-.vine-sway { transform-origin: 50% 0%; animation: vine-sway 9s ease-in-out infinite alternate; }
-
 @media (prefers-reduced-motion: reduce) {
-  .vine-sway { animation: none; }
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; filter: none; transition: none; }
   .rule-grow { transform: none; transition: none; }

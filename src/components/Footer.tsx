@@ -1,4 +1,3 @@
-import Vine from './Vine'
 import { FloatingPathsBackground } from './ui/floating-paths'
 import { profile } from '../data/content'
 
@@ -11,9 +10,7 @@ const links = [
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden">
-      <Vine up className="absolute bottom-0 left-2 z-[5] hidden h-64 w-24 xl:block" seed={2} />
-      <Vine up className="absolute bottom-0 right-2 z-[5] hidden h-64 w-24 xl:block" seed={3} />
+    <footer>
       <FloatingPathsBackground position={-1} className="flex min-h-64 items-end bg-ink">
         <div className="mx-auto flex max-w-7xl flex-col gap-6 px-6 py-10 md:flex-row md:items-center md:justify-between md:px-10">
           <p className="label">

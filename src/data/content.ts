@@ -51,3 +51,35 @@ export const projects: Project[] = [
     results: ['TODO: Results and deliverables.'],
   },
 ]
+
+// Hardcoded FAQs. Every answer comes from the sitemap content only; nothing invented.
+export const faqs = [
+  {
+    q: 'Who is Neptali Palmares?',
+    a: `${profile.name} is a developer. His tagline says it best: "${profile.tagline}"`,
+  },
+  {
+    q: 'What programming languages do you use?',
+    a: 'Front end: HTML, CSS and JavaScript. Back end: Python, Java and C++.',
+  },
+  {
+    q: 'What projects can I see?',
+    a: 'The Work section holds project case studies, sorted into Prelims, Midterm and Finals. Ride Sentinel is the first case study, and more projects are on the way.',
+  },
+  {
+    q: 'What does a case study include?',
+    a: 'Each one covers the problem statement and overview, the role, timeline and tools used, the process with wireframes, code and visuals, and the results and deliverables. You can also jump to the previous or next project from the bottom of the page.',
+  },
+  {
+    q: 'Where did you study?',
+    a: 'Senior High School at Passi National High School (2020–2022), and High School at Assumption (2010–2019).',
+  },
+  {
+    q: 'How can I get in touch?',
+    a: `Email ${profile.email}, or use the GitHub and LinkedIn links on the Contact page and in the footer.`,
+  },
+  {
+    q: 'Where can I find your resume?',
+    a: 'Click Resume in the footer. It opens the resume as a PDF.',
+  },
+]

@@ -8,6 +8,7 @@ import Footer from './components/Footer'
 import Home from './pages/Home'
 import CaseStudy from './pages/CaseStudy'
 import Contact from './pages/Contact'
+import Faqs from './pages/Faqs'
 
 function ScrollManager() {
   const { pathname, hash } = useLocation()
@@ -59,6 +60,7 @@ export default function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/work/:slug" element={<CaseStudy />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/faqs" element={<Faqs />} />
                 <Route path="*" element={<Home />} />
               </Routes>
             </motion.main>

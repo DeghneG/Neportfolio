@@ -11,9 +11,13 @@ export const profile = {
   bio: 'I build software one line at a time. I care about clean structure, honest logic, and shipping things that work.', // TODO: replace with your bio
 }
 
-export const languageGroups = [
-  { title: 'Front End', items: ['HTML', 'CSS', 'JavaScript'] },
-  { title: 'Back End', items: ['Python', 'Java', 'C++'] },
+export const languageGroups: { title: string; items: string[]; wide?: boolean }[] = [
+  {
+    title: 'Front End',
+    items: ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'React', 'Tailwind CSS', 'Framer Motion', 'React Router'],
+  },
+  { title: 'Back End', items: ['Python', 'Java', 'C++', 'PHP'] },
+  { title: 'Tools & Hosting', items: ['Vite', 'GitHub', 'Vercel'], wide: true },
 ]
 
 export const credentials = [
@@ -60,7 +64,11 @@ export const faqs = [
   },
   {
     q: 'What programming languages do you use?',
-    a: 'Front end: HTML, CSS and JavaScript. Back end: Python, Java and C++.',
+    a: 'Front end: HTML, CSS and JavaScript. Back end: Python, Java, C++ and PHP.',
+  },
+  {
+    q: 'What was this website built with?',
+    a: 'TypeScript and React, bundled with Vite. Styling is Tailwind CSS, animation is Framer Motion, and page routing is React Router. The code lives on GitHub and the site is deployed with Vercel.',
   },
   {
     q: 'What projects can I see?',

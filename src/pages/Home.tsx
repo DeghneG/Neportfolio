@@ -109,11 +109,11 @@ function About() {
         </Reveal>
         <div className="grid grid-cols-2 gap-10 md:col-span-5">
           {languageGroups.map((g, gi) => (
-            <div key={g.title}>
+            <div key={g.title} className={g.wide ? 'col-span-2' : undefined}>
               <Reveal delay={gi * 150}>
                 <h3 className="display mb-6 text-2xl">{g.title}</h3>
               </Reveal>
-              <ul className="space-y-3">
+              <ul className={g.wide ? 'grid grid-cols-2 gap-x-10 gap-y-3' : 'space-y-3'}>
                 {g.items.map((l, i) => (
                   <Reveal as="li" key={l} delay={gi * 150 + (i + 1) * 90} className="flex items-center gap-3 text-xl">
                     <span aria-hidden className="size-1.5 shrink-0 bg-bone" />

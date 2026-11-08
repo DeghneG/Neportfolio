@@ -40,7 +40,7 @@ function Card({ slot }: { slot: Slot }) {
         ) : (
           <div className="absolute inset-0 -translate-x-full bg-steel transition-transform duration-700 ease-out group-hover:translate-x-0" />
         )}
-        <p className="label relative">{p.term === 'Capstone' ? 'Capstone project' : 'Case study'}</p>
+        <p className="label relative">{p.term} project</p>
         <div className="relative flex items-end justify-between gap-4">
           <h4 className="display text-3xl md:text-5xl">{p.title}</h4>
           <span className="text-3xl transition-transform duration-500 group-hover:-translate-y-1 group-hover:translate-x-1 md:text-5xl">

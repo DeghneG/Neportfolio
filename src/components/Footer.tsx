@@ -2,7 +2,6 @@ import { FloatingPathsBackground } from './ui/floating-paths'
 import { profile } from '../data/content'
 
 const links = [
-  { label: 'GitHub', href: profile.github, external: true },
   { label: 'LinkedIn', href: profile.linkedin, external: true },
   { label: 'Email', href: `mailto:${profile.email}`, external: false },
   { label: 'Resume', href: profile.resume, external: true },

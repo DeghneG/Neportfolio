@@ -8,16 +8,16 @@ export const profile = {
   github: 'https://github.com/', // TODO: your GitHub profile URL
   linkedin: 'https://www.linkedin.com/', // TODO: your LinkedIn profile URL
   resume: '/resume.pdf', // TODO: drop your resume at public/resume.pdf
-  bio: 'I build software one line at a time. I care about clean structure, honest logic, and shipping things that work.', // TODO: replace with your bio
+  bio: 'Simpleng tao nangangarap maging pro player',
 }
 
 export const languageGroups: { title: string; items: string[]; wide?: boolean }[] = [
   {
     title: 'Front End',
-    items: ['HTML', 'CSS', 'JavaScript', 'TypeScript', 'React', 'Tailwind CSS', 'Framer Motion', 'React Router'],
+    items: ['HTML', 'CSS', 'JavaScript', 'TypeScript'],
   },
   { title: 'Back End', items: ['Python', 'Java', 'C++', 'PHP'] },
-  { title: 'Tools & Hosting', items: ['Vite', 'GitHub', 'Vercel'], wide: true },
+  { title: 'Tools & Hosting', items: ['Vite', 'GitHub', 'Vercel', 'Adobe Illustrator', 'Canva', 'CapCut'], wide: true },
 ]
 
 export const credentials = [
@@ -25,14 +25,15 @@ export const credentials = [
   { level: 'High School', school: 'Assumption', from: '2010', to: '2019' },
 ]
 
-export type Term = 'Prelims' | 'Midterm' | 'Finals'
-export const terms: Term[] = ['Prelims', 'Midterm', 'Finals']
+export type Term = 'Prelims' | 'Midterm' | 'Finals' | 'Capstone'
+export const terms: Term[] = ['Prelims', 'Midterm', 'Finals', 'Capstone']
 
 export type Project = {
   slug: string
   title: string
   term: Term
   summary: string
+  image?: string
   problem: string
   role: string
   timeline: string
@@ -43,9 +44,22 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: 'adobe-ball-animation',
+    title: 'Adobe Ball Animation',
+    term: 'Finals',
+    summary: 'Finals project.',
+    image: '/finals/NEPTALI-PALMARES.gif',
+    problem: 'TODO: Describe the problem this project solves and give a short overview.',
+    role: 'TODO: Your role',
+    timeline: 'TODO: Timeline',
+    tools: ['TODO'],
+    process: ['TODO: Process notes, wireframes, code snippets and visuals go here.'],
+    results: ['TODO: Results and deliverables.'],
+  },
+  {
     slug: 'ride-sentinel',
     title: 'Ride Sentinel',
-    term: 'Finals', // TODO: confirm which term this project belongs to
+    term: 'Capstone',
     summary: 'Project case study.', // TODO
     problem: 'TODO: Describe the problem Ride Sentinel solves and give a short overview.',
     role: 'TODO: Your role',
@@ -72,7 +86,7 @@ export const faqs = [
   },
   {
     q: 'What projects can I see?',
-    a: 'The Work section holds project case studies, sorted into Prelims, Midterm and Finals. Ride Sentinel is the first case study, and more projects are on the way.',
+    a: 'The Work section holds project case studies, sorted into Prelims, Midterm and Finals, with the capstone in its own category. Ride Sentinel is the capstone, and more projects are on the way.',
   },
   {
     q: 'What does a case study include?',

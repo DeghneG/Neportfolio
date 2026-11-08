@@ -14,7 +14,7 @@ type Slot = { kind: 'project'; project: Project } | { kind: 'placeholder'; n: nu
 function buildSlots(term: Term): Slot[] {
   const real = projects.filter((p) => p.term === term)
   const slots: Slot[] = real.map((project) => ({ kind: 'project', project }))
-  for (let n = real.length + 1; slots.length < Math.max(SLOTS_PER_TERM, real.length); n++) {
+  for (let n = real.length + 1; slots.length < Math.max(term === 'Capstone' ? 1 : SLOTS_PER_TERM, real.length); n++) {
     slots.push({ kind: 'placeholder', n })
   }
   return slots
@@ -28,8 +28,19 @@ function Card({ slot }: { slot: Slot }) {
         to={`/work/${p.slug}`}
         className="group relative flex h-full min-h-56 flex-col justify-between overflow-hidden border border-line bg-iron p-8 transition-colors duration-700 hover:border-smoke"
       >
-        <div className="absolute inset-0 -translate-x-full bg-steel transition-transform duration-700 ease-out group-hover:translate-x-0" />
-        <p className="label relative">Case study</p>
+        {p.image ? (
+          <>
+            <img
+              src={p.image}
+              alt=""
+              className="absolute inset-0 h-full w-full object-cover opacity-45 grayscale transition-all duration-700 group-hover:opacity-80 group-hover:grayscale-0"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent" />
+          </>
+        ) : (
+          <div className="absolute inset-0 -translate-x-full bg-steel transition-transform duration-700 ease-out group-hover:translate-x-0" />
+        )}
+        <p className="label relative">{p.term === 'Capstone' ? 'Capstone project' : 'Case study'}</p>
         <div className="relative flex items-end justify-between gap-4">
           <h4 className="display text-3xl md:text-5xl">{p.title}</h4>
           <span className="text-3xl transition-transform duration-500 group-hover:-translate-y-1 group-hover:translate-x-1 md:text-5xl">
@@ -60,7 +71,7 @@ function TermRow({ term, index }: { term: Term; index: number }) {
   return (
     <div className="grid gap-8 md:grid-cols-12">
       <Reveal className="md:col-span-3">
-        <p className="label mb-3">{String(index + 1).padStart(2, '0')} / 03</p>
+        <p className="label mb-3">{String(index + 1).padStart(2, '0')} / {String(terms.length).padStart(2, '0')}</p>
         <h3 className="display text-3xl md:text-4xl">{term}</h3>
         <p className="label mt-3">
           {real} {real === 1 ? 'project' : 'projects'}
@@ -69,7 +80,7 @@ function TermRow({ term, index }: { term: Term; index: number }) {
       </Reveal>
 
       <div className="md:col-span-9">
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className={`grid gap-4 ${slots.length > 1 ? 'md:grid-cols-2' : ''}`}>
           {head.map((s, i) => (
             <Reveal key={i} delay={i * 120}>
               <Card slot={s} />

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
-import { Route, Routes, useLocation } from 'react-router-dom'
+import { Route, Routes, useLocation, useNavigationType } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import Nav from './components/Nav'
 import Preloader from './components/Preloader'
@@ -10,15 +10,50 @@ import CaseStudy from './pages/CaseStudy'
 import Contact from './pages/Contact'
 import Faqs from './pages/Faqs'
 
+const scrollKey = (key: string) => `np-scroll:${key}`
+
+/**
+ * Link clicks start at the top (or at a #section); Back/Forward put you where you were
+ * on that page, instead of dumping you at the top of Home.
+ */
 function ScrollManager() {
-  const { pathname, hash } = useLocation()
+  const { pathname, hash, key } = useLocation()
+  const navType = useNavigationType()
+
+  // remember how far each history entry was scrolled
   useEffect(() => {
+    const save = () => {
+      try {
+        sessionStorage.setItem(scrollKey(key), String(window.scrollY))
+      } catch {
+        /* storage unavailable: back falls back to the top of the page */
+      }
+    }
+    window.addEventListener('scroll', save, { passive: true })
+    return () => window.removeEventListener('scroll', save)
+  }, [key])
+
+  useEffect(() => {
+    if (navType === 'POP') {
+      let saved: number | null = null
+      try {
+        const raw = sessionStorage.getItem(scrollKey(key))
+        saved = raw === null ? null : Number(raw)
+      } catch {
+        saved = null
+      }
+      if (saved !== null && !Number.isNaN(saved)) {
+        // wait for the page transition to finish mounting the previous page
+        const t = setTimeout(() => window.scrollTo({ top: saved as number, behavior: 'instant' }), 600)
+        return () => clearTimeout(t)
+      }
+    }
     if (hash) {
       const t = setTimeout(() => document.querySelector(hash)?.scrollIntoView({ behavior: 'smooth' }), 80)
       return () => clearTimeout(t)
     }
     window.scrollTo(0, 0)
-  }, [pathname, hash])
+  }, [pathname, hash, key, navType])
   return null
 }
 

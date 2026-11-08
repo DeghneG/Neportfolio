@@ -41,6 +41,13 @@ export default function CaseStudy() {
       </Reveal>
 
       <div className="mt-20">
+        {p.image ? (
+          // media-only project: just the animation, no text sections
+          <Reveal className="mb-20">
+            <img src={p.image} alt={`${p.title} preview`} className="w-full border border-line" />
+          </Reveal>
+        ) : (
+          <>
         <Block n="01" title="Problem & overview">
           <p className="text-xl leading-relaxed text-smoke md:text-2xl">{p.problem}</p>
         </Block>
@@ -90,6 +97,8 @@ export default function CaseStudy() {
             ))}
           </ul>
         </Block>
+          </>
+        )}
       </div>
 
       <Reveal as="nav" className="grid border-y border-line md:grid-cols-2">
